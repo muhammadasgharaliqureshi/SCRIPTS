@@ -7,6 +7,22 @@ GREEN='\033[0;32m'; NC='\033[0m'
 info(){ printf "${GREEN}==> %s${NC}\n" "$*"; }
 have(){ command -v "$1" &>/dev/null; }
 
+usage(){
+  cat <<'EOF'
+Usage: setup_devops.sh [OPTION]
+
+Installs Docker, AWS CLI, Terraform, Helm, kubectl, Minikube and
+Ansible on Ubuntu-based systems.
+
+  -h, --help   Show this help message and exit
+EOF
+}
+
+if [[ ${1:-} == "-h" || ${1:-} == "--help" ]]; then
+  usage
+  exit 0
+fi
+
 ############################################################
 # 0. Prep & legacy-repo cleanup
 ############################################################
